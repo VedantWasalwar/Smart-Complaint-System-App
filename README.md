@@ -22,7 +22,7 @@ Cloud Hosting: Hosted on Render for 24/7 availability and reliability.
 
 🛠 Technology Stack
 
-Frontend: Flutter / React (Mobile & Web UI)
+Frontend: Flutter 
 
 Backend: Django (Python)
 
