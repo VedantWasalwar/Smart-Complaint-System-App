@@ -58,8 +58,8 @@ APK is generated at: build/app/outputs/flutter-apk/app-release.apk
 
 Users can install APK on Android devices for mobile access.
 
-Direct APK Installation via QR Code:
-Scan this QR code to download and install the app: https://qr-codes.io/EW7qG2
+Direct APK Installation via QR Code Url:
+ this QR code Url to download and install the app: https://qr-codes.io/EW7qG2
 
 4. Integration & Hosting
 
