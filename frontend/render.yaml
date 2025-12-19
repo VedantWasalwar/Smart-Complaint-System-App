@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: smart-complaint-backend
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn smartcomplaint.wsgi:application"
