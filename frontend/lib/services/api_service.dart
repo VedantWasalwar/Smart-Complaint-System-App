@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class ApiService {
   // 🔴 PRIMARY BACKEND URL (Render)
   static const String baseUrl =
-      "https://smart-complaint-system-app-1.onrender.com/api";
+      "https://smart-complaint-system-app-2.onrender.com/api";
 
   // ==========================
   // GET ALL COMPLAINTS

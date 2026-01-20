@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # -------------------------
 # Base directory
@@ -9,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # -------------------------
 # Security
 # -------------------------
-SECRET_KEY = 'smart-complaint-secret-key'
+SECRET_KEY = os.environ.get("SECRET_KEY", "smart-complaint-secret-key")
 DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
@@ -77,20 +78,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'smartcomplaint.wsgi.application'
 
 # -------------------------
-# Database (PostgreSQL)
+# Database (LOCAL + RENDER) ✅ FIXED
 # -------------------------
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'smart_complaint_db',
-        'USER': 'smart_complaint_db_user',
-        'PASSWORD': 'VIXkxyaW6ax0gYjsDwtuquZPTarccWIi',
-        'HOST': 'dpg-d519q7fpm1nc73brod50-a.oregon-postgres.render.com',
-        'PORT': '5432',
-        'CONN_MAX_AGE': 0,   # 🔴 IMPORTANT (free DB ke liye)
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=0
+    )
 }
 
+# 🔽 LOCAL SYSTEM FALLBACK (VERY IMPORTANT)
+if not os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # -------------------------
 # Static & Media
