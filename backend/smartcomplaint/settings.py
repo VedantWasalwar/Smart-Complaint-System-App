@@ -11,9 +11,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security
 # -------------------------
 SECRET_KEY = os.environ.get("SECRET_KEY", "smart-complaint-secret-key")
-DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".onrender.com"
+]
 
 # -------------------------
 # Applications
@@ -78,17 +83,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'smartcomplaint.wsgi.application'
 
 # -------------------------
-# Database (LOCAL + RENDER) ✅ FIXED
+# Database (Render + Local) ✅ FINAL
 # -------------------------
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=0
-    )
-}
-
-# 🔽 LOCAL SYSTEM FALLBACK (VERY IMPORTANT)
-if not os.environ.get("DATABASE_URL"):
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -100,6 +105,8 @@ if not os.environ.get("DATABASE_URL"):
 # Static & Media
 # -------------------------
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
