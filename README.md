@@ -71,12 +71,12 @@ build/app/outputs/flutter-apk/app-release.apk
 
 
 📥 Download APK (QR Code):
-👉 https://qr-codes.io/EW7qG2
+👉 https://tinyurl.com/ComplaintApp
 
 🚀 Live Deployment
 
 🌐 Backend & Admin Panel:
-👉 https://smart-complaint-system-app-2.onrender.com/api/admin
+👉 https://smart-complaint-system-app-2.onrender.com/admin/
 
 ⚙️ App Workflow
 
